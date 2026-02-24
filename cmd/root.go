@@ -31,4 +31,7 @@ func Execute() {
 func init() {
 	rootCmd.Version = version
 	rootCmd.Flags().BoolP("version", "v", false, "显示版本信息")
+
+	// 企业工具常用：隐藏默认的 completion 命令
+	rootCmd.CompletionOptions.DisableDefaultCmd = true
 }
