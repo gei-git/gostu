@@ -11,6 +11,7 @@ import (
 var doneCmd = &cobra.Command{
 	Use:   "done [任务ID]",
 	Short: "标记任务为已完成",
+	Long:  `标记指定任务为已完成，例如：todo done 1`,
 }
 
 func init() {

@@ -32,6 +32,9 @@ func init() {
 	rootCmd.Version = version
 	rootCmd.Flags().BoolP("version", "v", false, "显示版本信息")
 
+	// 企业最佳实践：集中注册所有子命令（最可靠！）
+	rootCmd.AddCommand(addCmd, listCmd, doneCmd, versionCmd)
+
 	// 企业工具常用：隐藏默认的 completion 命令
 	rootCmd.CompletionOptions.DisableDefaultCmd = true
 }
