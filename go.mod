@@ -1,5 +1,4 @@
-module github.com/gei-git/gostu
-
+module github.com/gei-git/todo-cli
 go 1.24.4
 
 require (
