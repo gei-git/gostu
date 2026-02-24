@@ -1,6 +1,5 @@
 /*
 Copyright © 2026 NAME HERE <EMAIL ADDRESS>
-
 */
 package cmd
 
@@ -12,14 +11,9 @@ import (
 
 // addCmd represents the add command
 var addCmd = &cobra.Command{
-	Use:   "add",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+	Use:   "add[任务内容]",
+	Short: "添加一个新任务",
+	Long:  `添加任务，支持优先级和截止日期，例如：todo add "写周报" --priority high --due "2026-03-01"`,
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("add called")
 	},
