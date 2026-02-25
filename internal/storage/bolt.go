@@ -80,3 +80,31 @@ func (s *TaskStore) List() ([]*model.Task, error) {
 	})
 	return tasks, err
 }
+
+// MarkDone 标记任务为已完成
+func (s *TaskStore) MarkDone(id uint) error {
+	return s.db.Update(func(tx *bbolt.Tx) error {
+		b := tx.Bucket([]byte(bucketName))
+		key := []byte(fmt.Sprintf("%d", id))
+
+		v := b.Get(key)
+		if v == nil {
+			return fmt.Errorf("任务 ID %d 不存在", id)
+		}
+
+		var task model.Task
+		if err := json.Unmarshal(v, &task); err != nil {
+			return err
+		}
+
+		task.Done = true
+		task.UpdatedAt = time.Now()
+
+		buf, err := json.Marshal(task)
+		if err != nil {
+			return err
+		}
+
+		return b.Put(key, buf)
+	})
+}

@@ -40,3 +40,11 @@ func (s *TaskService) AddTask(title string) (*model.Task, error) {
 func (s *TaskService) ListTasks() ([]*model.Task, error) {
 	return s.store.List()
 }
+
+// MarkTaskDone 标记任务完成
+func (s *TaskService) MarkTaskDone(id uint) error {
+	if id == 0 {
+		return fmt.Errorf("任务ID不能为空")
+	}
+	return s.store.MarkDone(id)
+}
